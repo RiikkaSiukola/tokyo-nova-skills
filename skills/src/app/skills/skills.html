@@ -1,0 +1,25 @@
+<main class="main">
+    <div>
+        @for (tag of tags; track tag.tag; let index = $index) {
+            <button matButton type="button" (click)="toggleTag(index)" class="tag {{tag.active}}">{{ tag.tag }}</button>
+        }
+    </div>
+    <button matButton type="button" (click)="toggleAll(true)" class="tag">Select All</button>
+    <button matButton type="button" (click)="toggleAll(false)" class="tag">Select None</button>
+
+    <div class="card-container">
+        @for (skill of skillList; track skill.name) {
+            @if (shouldShowSkill(skill.tags)) {
+                <span class="card">
+                    <span class="card-title">{{ skill.name }}</span>
+                    <span class="card-content"><p>{{ skill.description }}</p></span>
+                    <span class="card-tags">
+                        @for (tag of skill.tags; track tag) {
+                            <span class="card-tag">{{ tag }}</span>
+                        }
+                    </span>
+                </span>
+            }
+        }
+    </div>
+</main>
